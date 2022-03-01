@@ -20,6 +20,32 @@ public class Function2 {
     которая объединит их и вернет упорядоченный массив с порядком таким же как и a
      */
     private static int[] merge(int[] a, int[] b) {
-        return new int[]{1};
+        if (a == null) {
+            return b;
+        }
+        boolean isArrayAHasAscendingOrder = false;
+        if (a.length > 0) {
+            isArrayAHasAscendingOrder = Function1.findMax(a) == a[0] ? false : true;
+        }
+        int[] arrayAfterMerge = new int[a.length + b.length];
+        for (int i = 0; i < a.length; i++) {
+            arrayAfterMerge[i] = a[i];
+        }
+        for (int i = a.length; i < arrayAfterMerge.length; i++) {
+            arrayAfterMerge[i] = b[i - a.length];
+        }
+
+        for (int i = 0; i < arrayAfterMerge.length; i++) {
+            for (int j = i + 1; j < arrayAfterMerge.length; j++) {
+                if (isArrayAHasAscendingOrder ? arrayAfterMerge[i] > arrayAfterMerge[j] : arrayAfterMerge[i] < arrayAfterMerge[j]) {
+                    int k = arrayAfterMerge[i];
+                    arrayAfterMerge[i] = arrayAfterMerge[j];
+                    arrayAfterMerge[j] = k;
+                }
+            }
+        }
+
+        return arrayAfterMerge;
     }
+
 }
