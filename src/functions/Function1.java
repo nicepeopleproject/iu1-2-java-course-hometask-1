@@ -17,7 +17,16 @@ public class Function1 {
     // реализовать функцию, которая будет находить максимум в массиве
     // обработать случай, когда длина массива равна нулю
     // в этом случае выбрасывать исключение
-    private static int findMax(int[] arr) {
-        return 1;
+    public static int findMax(int[] arr){
+        if (arr.length == 0) {
+            throw new RuntimeException("Length of array is null!");
+        }
+        int max = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+        return max;
     }
 }
