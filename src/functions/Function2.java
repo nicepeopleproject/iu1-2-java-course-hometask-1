@@ -1,4 +1,6 @@
 package functions;
+import java.util.Arrays;
+
 
 public class Function2 {
     public static void main(String[] args) {
@@ -19,7 +21,31 @@ public class Function2 {
     методу передаются два упорядоченных массива(могут быть упорядочены по-разному), реализуйте функцию,
     которая объединит их и вернет упорядоченный массив с порядком таким же как и a
      */
+
+    private static int[] reverse(int[] array){
+        int[] newArray = new int[array.length];
+
+        for(int i = 0; i < array.length; i++){
+            newArray[newArray.length - 1 - i] = array[i];
+        }
+
+        return newArray;
+    }
+
     private static int[] merge(int[] a, int[] b) {
-        return new int[]{1};
+        int N = a.length + b.length;
+        int[] c = new int[N];
+
+        System.arraycopy(a,0,c,0,a.length);
+        System.arraycopy(b,0,c,a.length,b.length);
+        Arrays.sort(c);
+
+        if(a.length >= 2 && a[0] <= a[1]){
+            return c;
+        }else{
+            return reverse(c);
+        }
+
+
     }
 }
