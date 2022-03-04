@@ -1,10 +1,10 @@
 package classes;
 
 public class Vehicle {
-    public String name;
-    public Type type;
-    public float fuel;
-    public float averagespeed;
+    private String name;
+    private Type type;
+    private float fuel;
+    private float averagespeed;
 
     public enum Type{
         Car, Truck, Bycycle;
@@ -17,12 +17,18 @@ public class Vehicle {
         this.averagespeed = averagespeed;
     }
 
-    public float time(Vehicle vehicle, float distance) {
-        return distance / vehicle.averagespeed;
+    public float time(float distance) {
+        return distance / averagespeed;
     }
 
-    public float distance_fuel(Vehicle vehicle, float distance) {
-        return (vehicle.fuel / 100) * distance;
+    public float distance_fuel(float distance) {
+        return (fuel / 100) * distance;
+    }
+    public static void VehicleInfo(Vehicle vehicle) {
+        System.out.println("Name = " + vehicle.name);
+        System.out.println("Type = " + vehicle.type);
+        System.out.println("Fuel consumption = " + vehicle.fuel);
+        System.out.println("Average speed = " + vehicle.averagespeed);
     }
 }
 
