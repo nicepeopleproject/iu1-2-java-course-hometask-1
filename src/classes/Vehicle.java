@@ -1,17 +1,22 @@
 package classes;
-import java.util.Scanner;
 
 public class Vehicle {
-    String type;
-    double averageSpeed;
-    double consumptionPer100Km;
+    private String type;
+    private double averageSpeed;
+    private double consumptionPer100Km;
 
-    public static void timeOfDistance(double distance, double averageSpeed) {
-        System.out.println(distance / averageSpeed);
+    public Vehicle(String type, double averageSpeed, double consumptionPer100Km) {
+        this.type = type;
+        this.averageSpeed = averageSpeed;
+        this.consumptionPer100Km = consumptionPer100Km;
     }
 
-    public static void requiredAmountOfFuel(double distance, double consumptionPer100Km) {
-        System.out.println(distance / consumptionPer100Km * 100);
-    }
+    public String getType() { return type; }
+    public double getAverageSpeed() { return averageSpeed; }
+    public double getConsumptionPer100Km() { return consumptionPer100Km;}
+
+    public double timeOfDistance(double distance) { return distance / averageSpeed; }
+    public double requiredAmountOfFuel(double distance) { return distance * 100 / consumptionPer100Km; }
+
 }
 
