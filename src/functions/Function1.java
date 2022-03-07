@@ -5,7 +5,7 @@ public class Function1 {
         System.out.println("Function testing:");
         System.out.printf("Test 1 %s.\n", ClassForTest
                 .compareResults(findMax(new int[]{3, 4, 10, -1}), 10) ? "passed" : "failed");
-
+        System.out.println();
         try {
             findMax(new int[0]);
             System.out.println("Test 2: failed.");
@@ -18,6 +18,17 @@ public class Function1 {
     // обработать случай, когда длина массива равна нулю
     // в этом случае выбрасывать исключение
     private static int findMax(int[] arr) {
-        return 1;
+        if (arr.length == 0) {
+            System.out.println("Your array is empty");
+            throw new RuntimeException("Your array is empty");
+        } else {
+            int maxItem = arr[0];
+            for (int i = 1; i < arr.length-1; i++) {
+                if (maxItem < arr[i]) {
+                    maxItem = arr[i];
+                }
+            }
+            return maxItem;
+        }
     }
 }
