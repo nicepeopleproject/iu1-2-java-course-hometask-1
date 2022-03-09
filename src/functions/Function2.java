@@ -1,4 +1,4 @@
-package functions;
+package com.example.dz_1;
 
 public class Function2 {
     public static void main(String[] args) {
@@ -20,6 +20,58 @@ public class Function2 {
     которая объединит их и вернет упорядоченный массив с порядком таким же как и a
      */
     private static int[] merge(int[] a, int[] b) {
-        return new int[]{1};
+        boolean Reverse = false;
+        for (int i = 0; i < a.length - 1; i++) {
+            if (a[i] > a[i + 1]) {
+                Reverse = true;
+            }
+            if (a[i] < a[i + 1]) {
+                Reverse = false;
+            }
+        }
+        int[] c = new int[a.length + b.length];
+        for (int i = 0; i < c.length; i++) {
+            if (i < a.length) {
+                c[i] = a[i];
+            } else {
+                c[i] = b[i - a.length];
+            }
+        }
+        Sorting(c, Reverse);
+        return c;
+    }
+
+    public static void Sorting(int [] c, boolean Reverse) {
+        if (Reverse == false) {
+            boolean sorted = false;
+            int temp;
+            while (!sorted) {
+                sorted = true;
+                for (int i = 0; i < c.length - 1; i++) {
+                    if (c[i] > c[i + 1]) {
+                        temp = c[i];
+                        c[i] = c[i + 1];
+                        c[i + 1] = temp;
+                        sorted = false;
+                    }
+                }
+            }
+
+        } else {
+            boolean sorted = false;
+            int temp;
+            while (!sorted) {
+                sorted = true;
+                for (int i = 0; i < c.length - 1; i++) {
+                    if (c[i] < c[i + 1]) {
+                        temp = c[i];
+                        c[i] = c[i + 1];
+                        c[i + 1] = temp;
+                        sorted = false;
+                    }
+                }
+            }
+
+        }
     }
 }
