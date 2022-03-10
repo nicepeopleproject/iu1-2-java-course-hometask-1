@@ -20,6 +20,94 @@ public class Function2 {
     которая объединит их и вернет упорядоченный массив с порядком таким же как и a
      */
     private static int[] merge(int[] a, int[] b) {
-        return new int[]{1};
+        if (a.length==0 && b.length==0){
+            return new int[]{};
+        }else if (a.length==0){
+            return b;
+        }else if (b.length==0){
+            return a;
+        }else{
+            int[] c = new int[a.length+b.length];
+            int count=0;
+            if (a[0]<a[1]){
+                if (a[0]<b[0]){
+                    for (int i=0; i<a.length;i++){
+                        c[i]=a[i];
+                        count++;
+                    }
+                    if (b[0]<b[1]){
+                        for (int j=0;j<b.length; j++){
+                            c[count]=b[j];
+                            count++;
+                        }
+                    }else{
+                        for (int j=b.length-1;j>=0; j--){
+                            c[count]=b[j];
+                            count++;
+                        }
+                    }
+                }else if(a[0]>b[0]){
+                    count=b.length;
+                    for (int i=0; i<a.length;i++){
+                        c[count]=a[i];
+                        count++;
+                    }
+                    if (b[0]<b[1]){
+                        for (int j=0;j<b.length; j++){
+                            c[j]=b[j];
+                        }
+                    }else{
+                        count=0;
+                        for (int j=b.length-1;j>=0; j--){
+                            c[count]=b[j];
+                            count++;
+                        }
+                    }
+                }
+            }else if (a[0]>a[1]){
+                if (a[0]<b[0]){
+                    count=b.length;
+                    for (int i=0; i<a.length;i++){
+                        c[count]=a[i];
+                        count++;
+                    }
+                    if (b[0]<b[1]){
+                        count=0;
+                        for (int j=b.length-1;j>=0; j--){
+                            c[count]=b[j];
+                            count++;
+                        }
+                    }else{
+                        for (int j=0;j<b.length; j++){
+                            c[j]=b[j];
+                        }
+                    }
+                }else if(a[0]>b[0]){
+                    for (int i=0; i<a.length;i++){
+                        c[i]=a[i];
+                        count++;
+                    }
+                    if (b[0]<b[1]){
+                        for (int j=b.length-1;j>=0; j--){
+                            c[count]=b[j];
+                            count++;
+                        }
+                    }else{
+                        for (int j=0;j<b.length; j++){
+                            c[count]=b[j];
+                        }
+                    }
+                }
+            }
+            Show(c);
+            return c;
+        }
     }
+
+    public static void Show(int[] c) {
+        for (int i=0; i<c.length;i++){
+            System.out.print(c[i]+" ");
+        }
+    }
+
 }
