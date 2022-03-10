@@ -20,6 +20,51 @@ public class Function2 {
     которая объединит их и вернет упорядоченный массив с порядком таким же как и a
      */
     private static int[] merge(int[] a, int[] b) {
-        return new int[]{1};
+        if (a.length == 0 & b.length == 0) {
+            int[] common = new int[]{};
+            return common;
+        }
+        if (a.length == 0 & b.length != 0) {
+            return a;
+        }
+        if (a.length != 0 & b.length == 0) {
+            return b;
+        }
+        if (b.length != 0 & b.length != 0) {
+            int[] common = new int[a.length + b.length];
+            int count = 0;
+            for(int i = 0; i<a.length; i++) {
+                common[i] = a[i];
+                count++;
+            }
+            for(int j = 0;j<b.length;j++) {
+                common[count++] = b[j];
+            }
+            if (a[a.length - 1] >= a[0]) {
+                int obmen;
+                for (int j = 1; j < common.length; j++) {
+                    for (int i = 0; i < common.length - j; i++) {
+                        if (common[i] > common[i+1]) {
+                            obmen = common[i];
+                            common[i] = common[i + 1];
+                            common[i + 1] = obmen;
+                        }
+                    }
+                }
+            } else {
+                int obmen;
+                for (int j = 1; j < common.length; j++) {
+                    for (int i = 0; i < common.length - j; i++) {
+                        if (common[i] < common[i+1]) {
+                            obmen = common[i];
+                            common[i] = common[i + 1];
+                            common[i + 1] = obmen;
+                        }
+                    }
+                }
+            }
+            return common;
+        }
+        return a; // требует return, но вроде до него никак не дойдёт
     }
 }

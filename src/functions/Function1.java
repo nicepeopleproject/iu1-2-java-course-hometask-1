@@ -18,6 +18,16 @@ public class Function1 {
     // обработать случай, когда длина массива равна нулю
     // в этом случае выбрасывать исключение
     private static int findMax(int[] arr) {
-        return 1;
+        int max = -1000;
+        if (arr.length == 0) {
+            throw new RuntimeException("Длина массива равна 0");
+        } else {
+            for (int i=0; i < arr.length;i++) {
+                if (arr[i] > max) {
+                    max = arr[i];
+                }
+            }
+        }
+        return max;
     }
 }
