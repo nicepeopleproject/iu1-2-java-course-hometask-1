@@ -20,6 +20,54 @@ public class Function2 {
     которая объединит их и вернет упорядоченный массив с порядком таким же как и a
      */
     private static int[] merge(int[] a, int[] b) {
-        return new int[]{1};
+        if (a.length == 0 & b.length == 0) {
+            int[] c = new int[]{};
+            return c;
+        } else if (b.length == 0) {
+            return b;
+        } else if (a.length == 0) {
+            return a;
+        } else {
+            int[] ab = new int[a.length + b.length];
+            int count = 0;
+            for(int i = 0; i < a.length; i++) {
+                ab[i] = a[i];
+                count++;
+            }
+            for(int j = 0;j<b.length;j++) {
+                ab[count++] = b[j];
+            }
+            if (a[0] > a[a.length - 1]) {
+                boolean if_sorted = false;
+                int r;
+                while(!if_sorted) {
+                    if_sorted = true;
+                    for (int i = 0; i < ab.length - 1; i++) {
+                        if (ab[i] < ab[i+1]) {
+                            r = ab[i];
+                            ab[i] = ab[i+1];
+                            ab[i+1] = r;
+                            if_sorted = false;
+                        }
+                    }
+                }
+
+            } else {
+                boolean if_sorted = false;
+                int r;
+                while(!if_sorted) {
+                    if_sorted = true;
+                    for (int i = 0; i < ab.length - 1; i++) {
+                        if (ab[i] > ab[i+1]) {
+                            r = ab[i];
+                            ab[i] = ab[i+1];
+                            ab[i+1] = r;
+                            if_sorted = false;
+                        }
+                    }
+                }
+            }
+            return ab;
+        }
     }
 }
