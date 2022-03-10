@@ -20,6 +20,54 @@ public class Function2 {
     которая объединит их и вернет упорядоченный массив с порядком таким же как и a
      */
     private static int[] merge(int[] a, int[] b) {
-        return new int[]{1};
+        int[] array = new int[a.length + b.length];
+        if(array.length == 0){
+            return new int[0];
+        }
+        for(int i = 0; i < array.length; i++){
+            if(i < a.length){
+                array[i] = a[i];
+            }
+            else{
+                array[i] = b[i - a.length];
+            }
+        }
+        boolean directOrder = true;
+        for(int i = 0; i < a.length - 1; i++){
+            if(a[i] < a[i + 1]){
+                directOrder = true;
+            }
+            if(a[i] > a[i + 1]){
+                directOrder = false;
+            }
+        }
+        return sortArray(array, directOrder);
+    }
+
+    private static int[] sortArray(int [] array, boolean directOrder){
+        int min;
+        int min_index;
+        int tmp;
+        for(int i = 0; i < array.length; i++){
+            min = array[i];
+            min_index = i;
+            for(int j = i; j < array.length; j++){
+                if(array[j] < min){
+                    min = array[j];
+                    min_index = j;
+                }
+            }
+            tmp = array[i];
+            array[i] = min;
+            array[min_index] = tmp;
+        }
+        if(!directOrder){
+            int[] reversed = new int[array.length];
+            for(int i = 0; i < array.length; i++){
+                reversed[i] = array[array.length - i - 1];
+            }
+            array = reversed;
+        }
+        return array;
     }
 }
