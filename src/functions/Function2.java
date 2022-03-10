@@ -20,6 +20,53 @@ public class Function2 {
     которая объединит их и вернет упорядоченный массив с порядком таким же как и a
      */
     private static int[] merge(int[] a, int[] b) {
-        return new int[]{1};
+        if (a.length == 0 & b.length == 0) {
+            int[] c = new int[]{};
+            return c;
+        } else if (a.length == 0) {
+            return a;
+        } else if (b.length == 0) {
+            return b;
+        } else {
+            int[]c = new int[a.length + b.length];
+            int count = 0;
+            for(int i = 0; i < a.length; i++) {
+                c[i] = a[i];
+                count++;
+            }
+            for(int j = 0; j < b.length;j++) {
+                c[count++] = b[j];
+            }
+            if (a[0] <= a[a.length - 1]) {                         //Сортировка не написана отдельно, так как задание было работать
+                boolean sorted = false;                           //конкретно с этим методом. Я решил в нем и оставаться
+                int temp;
+                while(!sorted) {
+                    sorted = true;
+                    for (int i = 0; i < c.length - 1; i++) {
+                        if (c[i] > c[i+1]) {
+                            temp = c[i];
+                            c[i] = c[i+1];
+                            c[i+1] = temp;
+                            sorted = false;
+                        }
+                    }
+                }
+            } else {
+                boolean sorted = false;
+                int temp;
+                while(!sorted) {
+                    sorted = true;
+                    for (int i = 0; i < c.length - 1; i++) {
+                        if (c[i] < c[i+1]) {
+                            temp = c[i];
+                            c[i] = c[i+1];
+                            c[i+1] = temp;
+                            sorted = false;
+                        }
+                    }
+                }
+            }
+        return c;
+        }
     }
 }
