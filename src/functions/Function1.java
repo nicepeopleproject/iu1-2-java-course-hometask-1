@@ -1,9 +1,14 @@
 package functions;
 
+import java.util.Arrays;
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
+
 public class Function1 {
+
     public static void main(String[] args) {
         System.out.println("Function testing:");
-        System.out.printf("Test 1 %s.\n", ClassForTest
+        System.out.printf("Test 1: %s.\n", ClassForTest
                 .compareResults(findMax(new int[]{3, 4, 10, -1}), 10) ? "passed" : "failed");
 
         try {
@@ -14,10 +19,14 @@ public class Function1 {
         }
     }
 
-    // реализовать функцию, которая будет находить максимум в массиве
-    // обработать случай, когда длина массива равна нулю
-    // в этом случае выбрасывать исключение
     private static int findMax(int[] arr) {
-        return 1;
+        if (arr.length != 0) {
+            IntStream stream = Arrays.stream(arr);
+            OptionalInt optional = stream.max();
+            int max = optional.getAsInt();
+
+            System.out.println("Maximum number = " + max);
+            return max;
+        } else throw new RuntimeException();
     }
 }
