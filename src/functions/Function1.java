@@ -18,6 +18,18 @@ public class Function1 {
     // обработать случай, когда длина массива равна нулю
     // в этом случае выбрасывать исключение
     private static int findMax(int[] arr) {
-        return 1;
+        if (arr.length > 0) {
+            int maxArrayElement = arr[0];
+
+            for (int i = 1; i < arr.length; i++) {
+                if (arr[i] > arr[0]) { maxArrayElement = arr[i];}
+            }
+            return maxArrayElement;
+
+        } else {
+            //System.out.println("No elements in array");
+            throw new RuntimeException("No elements in array");
+        }
     }
+
 }
