@@ -18,6 +18,17 @@ public class Function1 {
     // обработать случай, когда длина массива равна нулю
     // в этом случае выбрасывать исключение
     private static int findMax(int[] arr) {
-        return 1;
+        int max = arr[0];
+        if (arr.length != 0){
+            for (int i = 0; i < arr.length; i++){
+                if (arr[i] > max){
+                    max = arr[i];
+                }
+            }
+            System.out.println("Максимальное число массива = " + max);
+        }else{
+            System.out.println(arr[1]);
+        }
+        return max;
     }
 }
