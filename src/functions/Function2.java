@@ -20,6 +20,44 @@ public class Function2 {
     которая объединит их и вернет упорядоченный массив с порядком таким же как и a
      */
     private static int[] merge(int[] a, int[] b) {
-        return new int[]{1};
+
+        boolean isReversed = false;
+        if (a.length == 0) { isReversed = false; }
+
+        else if ((a[0] > a[1])) { isReversed = true; }
+
+        int answerArray[] = new int[a.length + b.length];
+
+        for(int i = 0; i < a.length; i++) { answerArray[i] = a[i]; }
+        for(int i = 0; i < b.length; i++) { answerArray[i + a.length] = b[i]; }
+
+        sorting(answerArray, isReversed);
+        return answerArray;
+    }
+
+    private static void sorting(int[] arr, boolean isReversed) {
+        for(int i = 0; i < arr.length; i++) {
+            for(int j = i + 1; j < arr.length ; j++) {
+                if( arr[j] < arr[i] ) {
+                    int tmp = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = tmp;
+                }
+            }
+        }
+
+        if (isReversed) {
+            int tmpArray[] = new int[arr.length];
+
+            for(int i = arr.length; i > 0; i--) {
+                tmpArray[arr.length - i] = arr[i - 1];
+            }
+            for(int i = 0; i < arr.length; i++) {
+                arr[i] = tmpArray[i];
+            }
+        }
+
     }
 }
+
+
