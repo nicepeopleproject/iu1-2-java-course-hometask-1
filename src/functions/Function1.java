@@ -27,5 +27,5 @@ public class Function1 {
 
         return maximumOfArray;
     }
-    
+
 }
