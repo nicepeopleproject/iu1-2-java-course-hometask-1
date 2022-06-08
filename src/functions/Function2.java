@@ -1,5 +1,9 @@
 package functions;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
 public class Function2 {
     public static void main(String[] args) {
         int[] a = new int[]{1, 2, 3, 4, 5};
@@ -20,6 +24,34 @@ public class Function2 {
     которая объединит их и вернет упорядоченный массив с порядком таким же как и a
      */
     private static int[] merge(int[] a, int[] b) {
-        return new int[]{1};
+        if (a.length == 0 & b.length == 0){
+            return a;
+        } else {
+            int[] helper = new int[a.length + b.length];
+            if (a[0] < a[a.length - 1]) {
+                for (int i = 0; i < a.length; i++) {
+                    helper[i] = a[i];
+                }
+                for (int i = a.length; i < helper.length; i++) {
+                    helper[i] = b[i-a.length];
+                }
+                Arrays.sort(helper);
+            }
+            if (a[0] >= a[a.length - 1]) {
+                for (int i = 0; i < a.length; i++) {
+                    helper[i] = a[i];
+                }
+                for (int i = a.length; i < helper.length; i++) {
+                    helper[i] = b[i-a.length];
+                }
+                Arrays.sort(helper);
+                for (int i = 0; i < helper.length / 2 ; i++){
+                    int h = helper[helper.length - i - 1];
+                    helper [helper.length - i - 1] = helper[i];
+                    helper [i] = h;
+                }
+            }
+            return helper;
+        }
     }
 }
